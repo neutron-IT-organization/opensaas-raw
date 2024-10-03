@@ -1,0 +1,78 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: opensaas-backend
+  namespace: my-super-saas
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
+  type: ClusterIP
+  selector:
+    app: opensaas-backend
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: opensaas-backend
+  namespace: my-super-saas
+spec:
+  host: opensaas-backend-florian-ns.apps.neutron-sno-office.intraneutron.fr
+  to:
+    kind: Service
+    name: opensaas-backend
+    weight: 100
+  port:
+    targetPort: 3001
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: opensaas-backend
+spec:
+  selector:
+    matchLabels:
+      app: opensaas-backend
+  template:
+    metadata:
+      labels:
+        app: opensaas-backend
+    spec:
+      securityContext:
+        runAsUser: 0
+      containers:
+        - name: opensaas-app
+          image: quay.io/florian_even/opensaas-backend
+          ports:
+            - containerPort: 3001
+              protocol: TCP
+          env:
+            - name: ADMIN_EMAILS
+              value: florian.even@neutron-it.fr
+            - name: JWT_SECRET
+              value: 7#!z9pr98okc^ax8)t*(7rf$99xf922)_m_&q8!1de_$dg594r
+            - name: WASP_SERVER_URL
+              value: 'http://opensaas-backend-florian-ns.apps.neutron-sno-office.intraneutron.fr'
+            - name: WASP_WEB_CLIENT_URL
+              value: 'http://opensaas-frontend-florian-ns.apps.neutron-sno-office.intraneutron.fr'
+            - name: PORT
+              value: '3001'
+            - name: GITHUB_CLIENT_ID
+              value: TO_REPLACE_BY_YOUR_OWN_VALUE
+            - name: GITHUB_CLIENT_SECRET
+              value: TO_REPLACE_BY_YOUR_OWN_VALUE
+            - name: GOOGLE_CLIENT_ID
+              value: TO_REPLACE_BY_YOUR_OWN_VALUE
+            - name: GOOGLE_CLIENT_SECRET
+              value: TO_REPLACE_BY_YOUR_OWN_VALUE
+            - name: DISCORD_CLIENT_ID
+              value: TO_REPLACE_BY_YOUR_OWN_VALUE
+            - name: DISCORD_CLIENT_SECRET
+              value: TO_REPLACE_BY_YOUR_OWN_VALUE
+            - name: DATABASE_URL
+              value: postgresql://postgresWaspDevUser:postgresWaspDevPass@wasp-dev-db-OpenSaas-06def77781:5432/OpenSaas
+            - name: STRIPE_API_KEY
+              value: TO_REPLACE_BY_YOUR_OWN_VALUE
+
