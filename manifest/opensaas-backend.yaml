@@ -43,7 +43,7 @@ spec:
         runAsUser: 0
       containers:
         - name: opensaas-app
-          image: quay.io/YOUR_REPO/opensaas-backend
+          image: quay.io/florian_even/opensaas-backend
           ports:
             - containerPort: 3001
               protocol: TCP
@@ -51,9 +51,9 @@ spec:
             - name: JWT_SECRET
               value: TO_GENERATE
             - name: WASP_SERVER_URL
-              value: 'http://opensaas-backend-my-super-saas.apps.YOUR_BASE_DOMAIN'
+              value: 'http://opensaas-backend-my-super-saas.apps.neutron-sno-office.intraneutron.fr'
             - name: WASP_WEB_CLIENT_URL
-              value: 'http://opensaas-frontend-my-super-saas.apps.YOUR_BASE_DOMAIN'
+              value: 'http://opensaas-frontend-my-super-saas.apps.neutron-sno-office.intraneutron.fr'
             - name: PORT
               value: '3001'
             - name: GITHUB_CLIENT_ID

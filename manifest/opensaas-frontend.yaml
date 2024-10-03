@@ -53,11 +53,11 @@ spec:
           name: opensaas-frontend-app
           env:
             - name: REACT_APP_API_URL
-              value: 'http://opensaas-backend-my-super-saas.apps.REPLACE_BY_YOUR_OWN_BASE_DOMAIN'
+              value: 'http://opensaas-backend-my-super-saas.apps.neutron-sno-office.intraneutron.fr'
             - name: PORT
               value: '3000'
           ports:
             - containerPort: 3000
               protocol: TCP
-          image: 'quay.io/YOUR_REPO/opensaas-frontend:latest'
+          image: 'quay.io/florian_even/opensaas-frontend:latest'
 

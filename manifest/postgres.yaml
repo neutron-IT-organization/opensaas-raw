@@ -40,5 +40,16 @@ spec:
           image: 'postgres:latest'
       securityContext:
         runAsUser: 0
-
-
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wasp-dev-db-opensaas-06def77781
+  namespace: my-super-saas
+spec:
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  selector:
+    app: wasp-dev-db
