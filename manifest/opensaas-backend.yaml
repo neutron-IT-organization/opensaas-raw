@@ -49,14 +49,12 @@ spec:
             - containerPort: 3001
               protocol: TCP
           env:
-            - name: ADMIN_EMAILS
-              value: florian.even@neutron-it.fr
             - name: JWT_SECRET
-              value: 7#!z9pr98okc^ax8)t*(7rf$99xf922)_m_&q8!1de_$dg594r
+              value: TO_GENERATE
             - name: WASP_SERVER_URL
-              value: 'http://opensaas-backend-florian-ns.apps.neutron-sno-office.intraneutron.fr'
+              value: 'http://opensaas-backend-my-super-saas.apps.neutron-sno-office.intraneutron.fr'
             - name: WASP_WEB_CLIENT_URL
-              value: 'http://opensaas-frontend-florian-ns.apps.neutron-sno-office.intraneutron.fr'
+              value: 'http://opensaas-frontend-my-super-saas.apps.neutron-sno-office.intraneutron.fr'
             - name: PORT
               value: '3001'
             - name: GITHUB_CLIENT_ID
